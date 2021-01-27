@@ -31,9 +31,6 @@ function setup() {
 	bobObject4=new bob(startBobPositionX+bobDiameter,startBobPositionY,bobDiameter);
 	bobObject5=new bob(startBobPositionX+bobDiameter*2,startBobPositionY,bobDiameter);
 	
-	
-	//Create a Ground
-	
 
 	var render = Render.create({
 	  element: document.body,
@@ -47,7 +44,6 @@ function setup() {
 
 
 	rope1=new rope(bobObject1.body,roofObject.body,-bobDiameter*2, 0)
-
 	rope2=new rope(bobObject2.body,roofObject.body,-bobDiameter*1, 0)
 	rope3=new rope(bobObject3.body,roofObject.body,0, 0)
 	rope4=new rope(bobObject4.body,roofObject.body,bobDiameter*1, 0)
@@ -99,8 +95,6 @@ function setup() {
 	World.add(world, pendulum5);
 	*/
 	Engine.run(engine);
-	//Render.run(render);
-  
 }
 
 
@@ -118,16 +112,7 @@ function draw() {
   bobObject2.display();
   bobObject3.display();
   bobObject4.display();
-  bobObject5.display();
- 
-  
-  
-	
-  
- 
-  
-  
- 
+  bobObject5.display(); 
 }
 
 function keyPressed() {
@@ -140,8 +125,17 @@ function keyPressed() {
 
 
 function drawLine(constraint)
+ 
 {
-	//draw line with its points on roof
+	
+	bobBodyPosition=constraint.bodyA.position
+	roofBodyPosition=constraint.bodyB.position
+
+	roofBodyOffset=constraint.pointB;
+	
+	roofBodyX=roofBodyPosition.x+roofBodyOffset.x
+	roofBodyY=roofBodyPosition.y+roofBodyOffset.y
+	line(bobBodyPosition.x, bobBodyPosition.y, roofBodyX,roofBodyY);
 	
 	
 	
